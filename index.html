@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的个人作品集 | 简约设计</title>
+    <title>我的产品集 | 简约设计</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -67,6 +67,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            text-decoration: none;
         }
         
         .logo-dot {
@@ -324,6 +325,27 @@
             color: white;
         }
         
+        /* 打印机特殊样式 */
+        .printer-featured {
+            background: linear-gradient(135deg, #f0f9ff 0%, #f5f3ff 100%);
+            border: 2px solid var(--primary-light);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .printer-featured::before {
+            content: "热门产品";
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background-color: var(--primary);
+            color: white;
+            padding: 5px 40px;
+            transform: rotate(45deg);
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -379,6 +401,25 @@
             font-size: 0.95rem;
         }
         
+        .product-specs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .spec-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--dark-light);
+            font-size: 0.9rem;
+        }
+        
+        .spec-item i {
+            color: var(--primary);
+        }
+        
         .product-footer {
             padding: 1.5rem;
             background-color: #f8fafc;
@@ -388,24 +429,47 @@
             align-items: center;
         }
         
-        .product-date {
-            color: var(--gray);
-            font-size: 0.9rem;
+        .product-price {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.2rem;
         }
         
-        .download-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--primary);
+        .product-actions {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn-view {
+            background-color: var(--primary);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 6px;
             text-decoration: none;
             font-weight: 600;
+            font-size: 0.9rem;
             transition: var(--transition);
         }
         
-        .download-link:hover {
-            color: var(--primary-dark);
-            gap: 12px;
+        .btn-view:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .btn-download {
+            background-color: transparent;
+            color: var(--primary);
+            padding: 8px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 2px solid var(--primary);
+            transition: var(--transition);
+        }
+        
+        .btn-download:hover {
+            background-color: rgba(79, 70, 229, 0.1);
         }
         
         /* 页脚 */
@@ -555,6 +619,16 @@
                 width: 100%;
                 justify-content: center;
             }
+            
+            .product-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .btn-view, .btn-download {
+                width: 100%;
+                text-align: center;
+            }
         }
         
         @media (max-width: 480px) {
@@ -580,8 +654,8 @@
     <!-- 头部导航 -->
     <header>
         <div class="container header-container">
-            <a href="#" class="logo">
-                <span>Portfolio.</span>
+            <a href="index.html" class="logo">
+                <span>产品集.</span>
                 <div class="logo-dot"></div>
             </a>
             
@@ -593,7 +667,7 @@
                 <ul>
                     <li><a href="#home" class="active">首页</a></li>
                     <li><a href="#about">个人介绍</a></li>
-                    <li><a href="#products">作品集</a></li>
+                    <li><a href="#products">产品展示</a></li>
                     <li><a href="#contact">联系我</a></li>
                 </ul>
             </nav>
@@ -607,10 +681,10 @@
     <!-- Hero 区域 -->
     <section class="hero" id="home">
         <div class="container">
-            <div class="hero-badge">创意设计师 & 开发者</div>
-            <h1>用设计创造价值，用代码实现梦想</h1>
-            <p>我专注于创造美观、实用且用户友好的数字产品，将复杂问题转化为优雅的解决方案。拥有超过5年的设计和开发经验，帮助多家企业提升了产品体验和业务价值。</p>
-            <a href="#products" class="btn btn-primary">查看我的作品 <i class="fas fa-arrow-right"></i></a>
+            <div class="hero-badge">专业打印机产品专家</div>
+            <h1>提供高质量的打印解决方案</h1>
+            <p>专注于工业级和专业级打印机产品，为企业提供全方位的打印解决方案。从高速生产到精细打印，我们的产品覆盖各种应用场景。</p>
+            <a href="#products" class="btn btn-primary">查看产品 <i class="fas fa-arrow-right"></i></a>
         </div>
     </section>
 
@@ -620,34 +694,35 @@
             <div class="section-header">
                 <div class="section-subtitle">关于我</div>
                 <h2 class="section-title">个人介绍</h2>
-                <p class="section-desc">一名充满激情的数字产品设计师和开发者，致力于创造优秀的用户体验</p>
+                <p class="section-desc">专注于打印机产品解决方案的专业顾问，拥有超过8年的行业经验</p>
             </div>
             
             <div class="about-card">
                 <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="个人形象">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="个人形象">
                 </div>
                 
                 <div class="about-content">
-                    <h3>你好，我是<span style="color: var(--primary);">李明</span></h3>
+                    <h3>你好，我是<span style="color: var(--primary);">张明</span></h3>
                     <div class="about-text">
-                        <p>我是一名用户体验设计师和前端开发者，专注于创造直观、美观且功能强大的数字产品。我相信好的设计不仅仅是美观，更重要的是解决问题并提供优秀的用户体验。</p>
-                        <p>在过去的项目中，我曾与多家初创公司和大型企业合作，帮助他们实现从概念到产品的完整转化。我习惯于在快节奏的环境中工作，并能有效管理多个项目。</p>
-                        <p>我热衷于学习新技术，参加设计研讨会，并在我的个人博客上分享我的见解和经验。目前，我正在探索AI与设计的结合，以及如何创造更具包容性的数字产品。</p>
+                        <p>我是一名打印机产品专家，专注于为企业提供专业的打印解决方案。拥有超过8年的行业经验，熟悉各种打印技术和应用场景。</p>
+                        <p>我精通从桌面打印机到工业级大幅面打印机的各种产品，能够根据客户的具体需求推荐最适合的打印解决方案。无论是办公文档打印、生产标签打印还是大幅面广告打印，我都能提供专业建议。</p>
+                        <p>我曾在多家知名打印设备公司担任技术顾问，积累了丰富的实践经验。我不仅了解产品技术参数，更理解不同行业客户的真实需求，能够将复杂的技术问题转化为简单易懂的解决方案。</p>
+                        <p>目前，我专注于为企业提供定制化的打印解决方案，帮助企业提高效率、降低成本并实现打印流程的优化。</p>
                     </div>
                     
                     <div class="skills-list">
-                        <span class="skill-tag">UI/UX 设计</span>
-                        <span class="skill-tag">前端开发</span>
-                        <span class="skill-tag">产品策略</span>
-                        <span class="skill-tag">用户研究</span>
-                        <span class="skill-tag">原型设计</span>
-                        <span class="skill-tag">响应式设计</span>
+                        <span class="skill-tag">打印机技术</span>
+                        <span class="skill-tag">打印解决方案</span>
+                        <span class="skill-tag">产品咨询</span>
+                        <span class="skill-tag">技术培训</span>
+                        <span class="skill-tag">售后服务</span>
+                        <span class="skill-tag">行业应用</span>
                     </div>
                     
                     <div class="about-actions">
                         <a href="#contact" class="btn btn-primary"><i class="fas fa-paper-plane"></i> 联系我</a>
-                        <a href="#" class="btn btn-outline"><i class="fas fa-download"></i> 下载简历</a>
+                        <a href="#" class="btn btn-outline"><i class="fas fa-download"></i> 产品手册</a>
                     </div>
                 </div>
             </div>
@@ -656,126 +731,118 @@
         <!-- 产品展示部分 -->
         <section id="products">
             <div class="section-header">
-                <div class="section-subtitle">作品展示</div>
-                <h2 class="section-title">我的作品集</h2>
-                <p class="section-desc">以下是我在不同领域的设计和开发项目，点击下载按钮可获取详细的项目介绍文档</p>
+                <div class="section-subtitle">产品展示</div>
+                <h2 class="section-title">我的产品</h2>
+                <p class="section-desc">以下是我提供的专业打印机产品，点击查看详情可浏览完整产品目录</p>
             </div>
             
             <div class="categories-tabs" id="categoryTabs">
-                <div class="category-tab active" data-category="all">全部作品</div>
-                <div class="category-tab" data-category="uiux">UI/UX 设计</div>
-                <div class="category-tab" data-category="web">网页开发</div>
-                <div class="category-tab" data-category="mobile">移动应用</div>
+                <div class="category-tab active" data-category="all">全部产品</div>
+                <div class="category-tab" data-category="printer">打印机</div>
             </div>
             
             <div class="products-grid" id="productsGrid">
-                <!-- 产品1 -->
-                <div class="product-card" data-category="uiux">
+                <!-- 打印机产品（特殊高亮） -->
+                <div class="product-card printer-featured" data-category="printer">
                     <div class="product-header">
-                        <span class="product-category">UI/UX 设计</span>
-                        <h3 class="product-title">智能家居控制应用</h3>
+                        <span class="product-category">打印机</span>
+                        <h3 class="product-title">工业高速喷墨打印机</h3>
                     </div>
                     <div class="product-body">
-                        <p class="product-desc">为智能家居生态系统设计的直观控制界面，支持设备管理、场景模式和能源监控。该设计获得了2023年设计奖项。</p>
+                        <p class="product-desc">专业级高速工业喷墨打印机，适用于大批量生产环境，支持多种介质打印，速度高达150页/分钟。</p>
+                        
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span>打印速度: 150页/分钟</span>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fas fa-ruler-combined"></i>
+                                <span>最大宽幅: A3+</span>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fas fa-tint"></i>
+                                <span>墨水类型: 颜料墨水</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="product-footer">
-                        <span class="product-date">2023年6月</span>
-                        <a href="downloads/smart-home-app.pdf" class="download-link" download>
-                            <span>下载文档</span>
-                            <i class="fas fa-arrow-down"></i>
-                        </a>
+                        <div class="product-price">¥ 45,800</div>
+                        <div class="product-actions">
+                            <a href="printers.html" class="btn-view">查看所有打印机</a>
+                        </div>
                     </div>
                 </div>
                 
-                <!-- 产品2 -->
-                <div class="product-card" data-category="uiux">
+                <!-- 其他产品示例 -->
+                <div class="product-card" data-category="printer">
                     <div class="product-header">
-                        <span class="product-category">UI/UX 设计</span>
-                        <h3 class="product-title">健康管理平台</h3>
+                        <span class="product-category">打印机</span>
+                        <h3 class="product-title">彩色激光打印机</h3>
                     </div>
                     <div class="product-body">
-                        <p class="product-desc">综合性健康数据追踪和个性化建议系统，集成健康指标监测、饮食建议和运动计划功能。</p>
+                        <p class="product-desc">企业级彩色激光打印机，适合中小型办公室使用，支持自动双面打印和网络连接。</p>
+                        
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span>打印速度: 35页/分钟</span>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fas fa-ruler-combined"></i>
+                                <span>最大宽幅: A4</span>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fas fa-tint"></i>
+                                <span>墨水类型: 碳粉</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="product-footer">
-                        <span class="product-date">2023年4月</span>
-                        <a href="downloads/health-platform.pdf" class="download-link" download>
-                            <span>下载文档</span>
-                            <i class="fas fa-arrow-down"></i>
-                        </a>
+                        <div class="product-price">¥ 8,500</div>
+                        <div class="product-actions">
+                            <a href="printers.html" class="btn-view">查看详情</a>
+                        </div>
                     </div>
                 </div>
                 
-                <!-- 产品3 -->
-                <div class="product-card" data-category="web">
+                <!-- 其他产品示例2 -->
+                <div class="product-card" data-category="printer">
                     <div class="product-header">
-                        <span class="product-category">网页开发</span>
-                        <h3 class="product-title">电子商务平台</h3>
+                        <span class="product-category">打印机</span>
+                        <h3 class="product-title">照片打印机</h3>
                     </div>
                     <div class="product-body">
-                        <p class="product-desc">全功能在线购物平台，支持多支付方式、商品管理和用户评价系统。采用响应式设计，适配所有设备。</p>
+                        <p class="product-desc">专业级照片打印机，支持6色墨水系统，提供卓越的色彩还原和细节表现。</p>
+                        
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span>打印速度: 15页/分钟</span>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fas fa-ruler-combined"></i>
+                                <span>最大宽幅: A3+</span>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fas fa-tint"></i>
+                                <span>墨水类型: 染料墨水</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="product-footer">
-                        <span class="product-date">2023年8月</span>
-                        <a href="downloads/ecommerce-platform.pdf" class="download-link" download>
-                            <span>下载文档</span>
-                            <i class="fas fa-arrow-down"></i>
-                        </a>
+                        <div class="product-price">¥ 12,300</div>
+                        <div class="product-actions">
+                            <a href="printers.html" class="btn-view">查看详情</a>
+                        </div>
                     </div>
                 </div>
-                
-                <!-- 产品4 -->
-                <div class="product-card" data-category="web">
-                    <div class="product-header">
-                        <span class="product-category">网页开发</span>
-                        <h3 class="product-title">在线学习系统</h3>
-                    </div>
-                    <div class="product-body">
-                        <p class="product-desc">交互式课程平台，支持视频课程、在线测验和学习进度跟踪。为教育机构定制的内容管理系统。</p>
-                    </div>
-                    <div class="product-footer">
-                        <span class="product-date">2023年5月</span>
-                        <a href="downloads/learning-system.pdf" class="download-link" download>
-                            <span>下载文档</span>
-                            <i class="fas fa-arrow-down"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- 产品5 -->
-                <div class="product-card" data-category="mobile">
-                    <div class="product-header">
-                        <span class="product-category">移动应用</span>
-                        <h3 class="product-title">旅行规划应用</h3>
-                    </div>
-                    <div class="product-body">
-                        <p class="product-desc">个性化行程规划和旅行建议应用，集成地图导航、住宿预订和本地活动推荐功能。</p>
-                    </div>
-                    <div class="product-footer">
-                        <span class="product-date">2023年7月</span>
-                        <a href="downloads/travel-app.pdf" class="download-link" download>
-                            <span>下载文档</span>
-                            <i class="fas fa-arrow-down"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- 产品6 -->
-                <div class="product-card" data-category="mobile">
-                    <div class="product-header">
-                        <span class="product-category">移动应用</span>
-                        <h3 class="product-title">健身追踪器</h3>
-                    </div>
-                    <div class="product-body">
-                        <p class="product-desc">运动数据记录和个性化训练计划应用，支持心率监测、卡路里计算和社交分享功能。</p>
-                    </div>
-                    <div class="product-footer">
-                        <span class="product-date">2023年3月</span>
-                        <a href="downloads/fitness-tracker.pdf" class="download-link" download>
-                            <span>下载文档</span>
-                            <i class="fas fa-arrow-down"></i>
-                        </a>
-                    </div>
-                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="printers.html" class="btn btn-primary" style="padding: 15px 40px; font-size: 1.1rem;">
+                    <i class="fas fa-print"></i> 浏览完整打印机产品目录
+                </a>
             </div>
         </section>
     </main>
@@ -785,13 +852,13 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-col">
-                    <h3>我的作品集</h3>
-                    <p>用设计创造价值，用代码实现梦想。如果您对我的作品感兴趣，或者想要讨论合作机会，请随时联系我。</p>
+                    <h3>我的产品集</h3>
+                    <p>专注于提供专业的打印解决方案。如果您对我们的产品感兴趣，或者需要定制化的打印方案，请随时联系我。</p>
                     <div class="social-links">
                         <a href="#" class="social-link"><i class="fab fa-github"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-dribbble"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-behance"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-weixin"></i></a>
                     </div>
                 </div>
                 
@@ -800,7 +867,8 @@
                     <ul class="footer-links">
                         <li><a href="#home">首页</a></li>
                         <li><a href="#about">个人介绍</a></li>
-                        <li><a href="#products">作品集</a></li>
+                        <li><a href="#products">产品展示</a></li>
+                        <li><a href="printers.html">打印机产品</a></li>
                         <li><a href="#contact">联系我</a></li>
                     </ul>
                 </div>
@@ -808,15 +876,15 @@
                 <div class="footer-col">
                     <h3>联系方式</h3>
                     <ul class="footer-links">
-                        <li><i class="fas fa-envelope" style="margin-right: 10px;"></i> your.email@example.com</li>
-                        <li><i class="fas fa-phone" style="margin-right: 10px;"></i> +86 123-4567-8900</li>
-                        <li><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i> 中国，北京</li>
+                        <li><i class="fas fa-envelope" style="margin-right: 10px;"></i> printer.solutions@example.com</li>
+                        <li><i class="fas fa-phone" style="margin-right: 10px;"></i> +86 138-0013-8000</li>
+                        <li><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i> 中国，上海</li>
                     </ul>
                 </div>
             </div>
             
             <div class="copyright">
-                <p>&copy; 2023 个人作品集. 保留所有权利.  Designed with <i class="fas fa-heart" style="color: #ef4444;"></i></p>
+                <p>&copy; 2023 个人产品集. 保留所有权利.  Designed with <i class="fas fa-heart" style="color: #ef4444;"></i></p>
             </div>
         </div>
     </footer>
@@ -888,30 +956,6 @@
                         behavior: 'smooth'
                     });
                 }
-            });
-        });
-        
-        // PDF下载提示
-        document.querySelectorAll('.download-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                // 在实际使用中，这里应该链接到真实的PDF文件
-                // 由于演示目的，我们只显示一个提示
-                const productTitle = this.closest('.product-card').querySelector('.product-title').textContent;
-                alert(`开始下载: ${productTitle} 的详细介绍文档\n\n注意：这是一个示例，实际网站中这里会链接到真实的PDF文件。\n\n请将您的PDF文件放入网站的downloads文件夹，并更新链接地址。`);
-                
-                // 阻止默认行为（因为演示中没有真实PDF文件）
-                e.preventDefault();
-                
-                // 添加下载动画效果
-                const icon = this.querySelector('i');
-                icon.className = 'fas fa-spinner fa-spin';
-                
-                setTimeout(() => {
-                    icon.className = 'fas fa-check';
-                    setTimeout(() => {
-                        icon.className = 'fas fa-arrow-down';
-                    }, 1500);
-                }, 1000);
             });
         });
         
