@@ -14,19 +14,20 @@
         }
         
         :root {
-            --primary: #4f46e5;
-            --primary-light: #818cf8;
-            --primary-dark: #3730a3;
-            --secondary: #10b981;
-            --dark: #111827;
-            --dark-light: #1f2937;
-            --light: #f9fafb;
-            --gray: #9ca3af;
-            --gray-light: #e5e7eb;
+            --primary: #D71A1A;
+            --primary-light: #E63939;
+            --primary-dark: #B01515;
+            --secondary: #2A9D8F;
+            --dark: #1D1D1D;
+            --dark-light: #3A3A3A;
+            --light: #FDFBF2;
+            --light-alt: #F8F5E6;
+            --gray: #7A7A7A;
+            --gray-light: #E0DED0;
             --border-radius: 12px;
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
-            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+            --shadow-sm: 0 1px 3px rgba(215, 26, 26, 0.12);
+            --shadow: 0 4px 6px -1px rgba(215, 26, 26, 0.1), 0 2px 4px -1px rgba(215, 26, 26, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(215, 26, 26, 0.1), 0 4px 6px -2px rgba(215, 26, 26, 0.05);
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
@@ -45,12 +46,13 @@
         
         /* 头部样式 */
         header {
-            background-color: white;
+            background-color: var(--light);
             box-shadow: var(--shadow-sm);
             position: sticky;
             top: 0;
             z-index: 100;
             padding: 1rem 0;
+            border-bottom: 1px solid rgba(215, 26, 26, 0.1);
         }
         
         .header-container {
@@ -62,7 +64,7 @@
         .logo {
             font-size: 1.8rem;
             font-weight: 800;
-            color: var(--dark);
+            color: var(--primary);
             display: flex;
             align-items: center;
             gap: 8px;
@@ -84,17 +86,21 @@
             text-decoration: none;
             font-weight: 600;
             transition: var(--transition);
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: 2px solid var(--primary);
         }
         
         .back-btn:hover {
             gap: 12px;
+            background-color: rgba(215, 26, 26, 0.1);
         }
         
         /* 页面标题 */
         .page-header {
             padding: 3rem 0 2rem;
             text-align: center;
-            background: linear-gradient(135deg, #f0f4ff 0%, #fef7ff 100%);
+            background: linear-gradient(135deg, rgba(215, 26, 26, 0.05) 0%, rgba(253, 251, 242, 0.8) 100%);
             border-radius: 0 0 40px 40px;
             margin-bottom: 3rem;
         }
@@ -123,6 +129,7 @@
             box-shadow: var(--shadow);
             padding: 2rem;
             margin-bottom: 3rem;
+            border: 1px solid rgba(215, 26, 26, 0.1);
         }
         
         .filters-title {
@@ -165,7 +172,7 @@
         .filter-option {
             padding: 8px 16px;
             background-color: var(--light);
-            border: 2px solid var(--gray-light);
+            border: 2px solid rgba(215, 26, 26, 0.2);
             border-radius: 6px;
             font-weight: 500;
             cursor: pointer;
@@ -178,7 +185,7 @@
         
         .filter-option.active {
             background-color: var(--primary);
-            color: white;
+            color: var(--light);
             border-color: var(--primary);
         }
         
@@ -205,7 +212,7 @@
         
         .btn-primary {
             background-color: var(--primary);
-            color: white;
+            color: var(--light);
         }
         
         .btn-primary:hover {
@@ -221,7 +228,7 @@
         }
         
         .btn-outline:hover {
-            background-color: rgba(79, 70, 229, 0.1);
+            background-color: rgba(215, 26, 26, 0.1);
         }
         
         /* 产品网格 */
@@ -258,6 +265,7 @@
             height: 100%;
             display: flex;
             flex-direction: column;
+            border: 1px solid rgba(215, 26, 26, 0.1);
         }
         
         .product-card:hover {
@@ -267,11 +275,12 @@
         
         .product-image {
             height: 200px;
-            background-color: #f3f4f6;
+            background-color: var(--light-alt);
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            border-bottom: 1px solid rgba(215, 26, 26, 0.1);
         }
         
         .product-image img {
@@ -322,7 +331,7 @@
             display: flex;
             justify-content: space-between;
             padding: 8px 0;
-            border-bottom: 1px solid var(--gray-light);
+            border-bottom: 1px solid rgba(215, 26, 26, 0.1);
         }
         
         .spec-label {
@@ -336,8 +345,8 @@
         
         .product-footer {
             padding: 1.5rem;
-            background-color: #f8fafc;
-            border-top: 1px solid var(--gray-light);
+            background-color: var(--light-alt);
+            border-top: 1px solid rgba(215, 26, 26, 0.1);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -351,7 +360,7 @@
         
         .btn-learn {
             background-color: var(--primary);
-            color: white;
+            color: var(--light);
             padding: 10px 20px;
             border-radius: 6px;
             text-decoration: none;
@@ -367,8 +376,8 @@
         
         /* 页脚 */
         footer {
-            background-color: var(--dark);
-            color: white;
+            background-color: var(--primary);
+            color: var(--light);
             padding: 3rem 0 2rem;
             border-radius: 40px 40px 0 0;
         }
@@ -383,11 +392,11 @@
         .footer-col h3 {
             font-size: 1.3rem;
             margin-bottom: 1.5rem;
-            color: white;
+            color: var(--light);
         }
         
         .footer-col p {
-            color: var(--gray);
+            color: rgba(253, 251, 242, 0.8);
             margin-bottom: 1.5rem;
         }
         
@@ -400,17 +409,18 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background-color: var(--dark-light);
+            background-color: rgba(253, 251, 242, 0.2);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: var(--light);
             text-decoration: none;
             transition: var(--transition);
         }
         
         .social-link:hover {
-            background-color: var(--primary);
+            background-color: var(--light);
+            color: var(--primary);
             transform: translateY(-3px);
         }
         
@@ -423,21 +433,21 @@
         }
         
         .footer-links a {
-            color: var(--gray);
+            color: rgba(253, 251, 242, 0.8);
             text-decoration: none;
             transition: var(--transition);
         }
         
         .footer-links a:hover {
-            color: white;
+            color: var(--light);
             padding-left: 5px;
         }
         
         .copyright {
             text-align: center;
             padding-top: 2rem;
-            border-top: 1px solid var(--dark-light);
-            color: var(--gray);
+            border-top: 1px solid rgba(253, 251, 242, 0.2);
+            color: rgba(253, 251, 242, 0.7);
             font-size: 0.9rem;
         }
         
@@ -476,6 +486,14 @@
             .btn-learn {
                 width: 100%;
                 text-align: center;
+            }
+            
+            .filter-actions {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
             }
         }
         
@@ -531,7 +549,7 @@
                 <div class="filter-group">
                     <label class="filter-label">打印速度</label>
                     <div class="filter-options" id="speedFilter">
-                        <div class="filter-option" data-value="all">全部</div>
+                        <div class="filter-option active" data-value="all">全部</div>
                         <div class="filter-option" data-value="fast">高速 (≥50页/分钟)</div>
                         <div class="filter-option" data-value="normal">标准 (20-49页/分钟)</div>
                         <div class="filter-option" data-value="slow">低速 (&lt;20页/分钟)</div>
@@ -542,7 +560,7 @@
                 <div class="filter-group">
                     <label class="filter-label">打印宽幅</label>
                     <div class="filter-options" id="widthFilter">
-                        <div class="filter-option" data-value="all">全部</div>
+                        <div class="filter-option active" data-value="all">全部</div>
                         <div class="filter-option" data-value="wide">宽幅 (≥A3)</div>
                         <div class="filter-option" data-value="standard">标准 (A4/A5)</div>
                     </div>
@@ -552,7 +570,7 @@
                 <div class="filter-group">
                     <label class="filter-label">墨水类型</label>
                     <div class="filter-options" id="inkFilter">
-                        <div class="filter-option" data-value="all">全部</div>
+                        <div class="filter-option active" data-value="all">全部</div>
                         <div class="filter-option" data-value="laser">激光打印机</div>
                         <div class="filter-option" data-value="inkjet">喷墨打印机</div>
                         <div class="filter-option" data-value="solid">固态墨水</div>
@@ -621,7 +639,7 @@
             </div>
             
             <div class="copyright">
-                <p>&copy; 2023 打印机产品目录. 保留所有权利.  Designed with <i class="fas fa-heart" style="color: #ef4444;"></i></p>
+                <p>&copy; 2023 打印机产品目录. 保留所有权利.  Designed with <i class="fas fa-heart" style="color: #FDFBF2;"></i></p>
             </div>
         </div>
     </footer>
