@@ -352,12 +352,6 @@
             align-items: center;
         }
         
-        .product-price {
-            font-weight: 700;
-            color: var(--primary);
-            font-size: 1.2rem;
-        }
-        
         .btn-learn {
             background-color: var(--primary);
             color: var(--light);
@@ -372,6 +366,36 @@
         .btn-learn:hover {
             background-color: var(--primary-dark);
             transform: translateY(-2px);
+        }
+        
+        /* 耗材推荐标签 */
+        .supply-tag {
+            display: inline-block;
+            background-color: rgba(215, 26, 26, 0.1);
+            color: var(--primary);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 10px;
+            border: 1px solid rgba(215, 26, 26, 0.2);
+        }
+        
+        .supply-tag.disabled {
+            background-color: rgba(122, 122, 122, 0.1);
+            color: var(--gray);
+            border-color: var(--gray-light);
+        }
+        
+        /* 无PDF链接样式 */
+        .btn-learn.disabled {
+            background-color: var(--gray);
+            cursor: not-allowed;
+        }
+        
+        .btn-learn.disabled:hover {
+            background-color: var(--gray);
+            transform: none;
         }
         
         /* 页脚 */
@@ -545,18 +569,18 @@
             </h2>
             
             <div class="filters-grid">
-                <!-- 打印速度筛选 -->
+                <!-- 墨水类型筛选 (第一优先级) -->
                 <div class="filter-group">
-                    <label class="filter-label">打印速度</label>
-                    <div class="filter-options" id="speedFilter">
+                    <label class="filter-label">墨水类型</label>
+                    <div class="filter-options" id="inkFilter">
                         <div class="filter-option active" data-value="all">全部</div>
-                        <div class="filter-option" data-value="fast">高速 (≥50页/分钟)</div>
-                        <div class="filter-option" data-value="normal">标准 (20-49页/分钟)</div>
-                        <div class="filter-option" data-value="slow">低速 (&lt;20页/分钟)</div>
+                        <div class="filter-option" data-value="laser">激光打印机</div>
+                        <div class="filter-option" data-value="inkjet">喷墨打印机</div>
+                        <div class="filter-option" data-value="solid">固态墨水</div>
                     </div>
                 </div>
                 
-                <!-- 打印宽幅筛选 -->
+                <!-- 打印宽幅筛选 (第二优先级) -->
                 <div class="filter-group">
                     <label class="filter-label">打印宽幅</label>
                     <div class="filter-options" id="widthFilter">
@@ -566,14 +590,14 @@
                     </div>
                 </div>
                 
-                <!-- 墨水类型筛选 -->
+                <!-- 打印机功能筛选 (原打印速度改为功能) -->
                 <div class="filter-group">
-                    <label class="filter-label">墨水类型</label>
-                    <div class="filter-options" id="inkFilter">
+                    <label class="filter-label">主要功能</label>
+                    <div class="filter-options" id="featureFilter">
                         <div class="filter-option active" data-value="all">全部</div>
-                        <div class="filter-option" data-value="laser">激光打印机</div>
-                        <div class="filter-option" data-value="inkjet">喷墨打印机</div>
-                        <div class="filter-option" data-value="solid">固态墨水</div>
+                        <div class="filter-option" data-value="office">办公打印</div>
+                        <div class="filter-option" data-value="photo">照片打印</div>
+                        <div class="filter-option" data-value="industrial">工业打印</div>
                     </div>
                 </div>
             </div>
@@ -652,118 +676,138 @@
                 name: "工业高速喷墨打印机",
                 model: "PRO-JET 8500",
                 description: "专业级高速工业喷墨打印机，适用于大批量生产环境，支持多种介质打印，速度高达150页/分钟。",
-                speed: "fast",
-                width: "wide",
                 ink: "inkjet",
+                width: "wide",
+                feature: "industrial",
                 price: "¥ 45,800",
-                image: "https://images.unsplash.com/photo-1551650976-6de8f6e4e4a4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                image: "https://images.unsplash.com/photo-1551650976-6de8f6e4e4a4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                hasPdf: true,
+                hasSupplies: true
             },
             {
                 id: 2,
                 name: "彩色激光打印机",
                 model: "LASER-COLOR X5",
                 description: "企业级彩色激光打印机，适合中小型办公室使用，支持自动双面打印和网络连接。",
-                speed: "normal",
-                width: "standard",
                 ink: "laser",
+                width: "standard",
+                feature: "office",
                 price: "¥ 8,500",
-                image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w-600&q=80"
+                image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w-600&q=80",
+                hasPdf: false,
+                hasSupplies: false
             },
             {
                 id: 3,
                 name: "专业照片打印机",
                 model: "PHOTO-PRO 9600",
                 description: "专业级照片打印机，支持6色墨水系统，提供卓越的色彩还原和细节表现。",
-                speed: "slow",
-                width: "wide",
                 ink: "inkjet",
+                width: "wide",
+                feature: "photo",
                 price: "¥ 12,300",
-                image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                hasPdf: true,
+                hasSupplies: true
             },
             {
                 id: 4,
                 name: "高速黑白激光打印机",
                 model: "LASER-MONO S8",
                 description: "高速黑白激光打印机，适合高负荷办公环境，月打印量可达10万页。",
-                speed: "fast",
-                width: "standard",
                 ink: "laser",
+                width: "standard",
+                feature: "office",
                 price: "¥ 15,200",
-                image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                hasPdf: true,
+                hasSupplies: true
             },
             {
                 id: 5,
                 name: "大幅面绘图仪",
                 model: "PLOT-MAX A0",
                 description: "专业大幅面绘图仪，支持A0尺寸打印，适用于工程图纸和广告海报。",
-                speed: "normal",
-                width: "wide",
                 ink: "inkjet",
+                width: "wide",
+                feature: "industrial",
                 price: "¥ 32,500",
-                image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                hasPdf: true,
+                hasSupplies: true
             },
             {
                 id: 6,
                 name: "便携式移动打印机",
                 model: "MOBILE-PRINT P3",
                 description: "便携式移动打印机，支持蓝牙和WiFi连接，适合移动办公和现场作业。",
-                speed: "slow",
-                width: "standard",
                 ink: "solid",
+                width: "standard",
+                feature: "office",
                 price: "¥ 3,800",
-                image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                hasPdf: false,
+                hasSupplies: true
             },
             {
                 id: 7,
                 name: "高速票据打印机",
                 model: "RECEIPT-PRO R2",
                 description: "高速票据打印机，专为零售和餐饮行业设计，支持多联打印。",
-                speed: "fast",
-                width: "standard",
                 ink: "solid",
+                width: "standard",
+                feature: "office",
                 price: "¥ 2,500",
-                image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                hasPdf: true,
+                hasSupplies: false
             },
             {
                 id: 8,
                 name: "3D打印机",
                 model: "3D-PRO FDM500",
                 description: "专业级3D打印机，支持多种打印材料，打印精度高达0.1mm。",
-                speed: "slow",
-                width: "wide",
                 ink: "solid",
+                width: "wide",
+                feature: "industrial",
                 price: "¥ 28,900",
-                image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                hasPdf: true,
+                hasSupplies: true
             },
             {
                 id: 9,
                 name: "多功能一体机",
                 model: "MULTI-FUN X7",
                 description: "多功能一体机，集成打印、扫描、复印和传真功能，适合中小型企业。",
-                speed: "normal",
-                width: "standard",
                 ink: "laser",
+                width: "standard",
+                feature: "office",
                 price: "¥ 6,800",
-                image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                hasPdf: false,
+                hasSupplies: false
             },
             {
                 id: 10,
                 name: "工业标签打印机",
                 model: "LABEL-PRO L5",
                 description: "工业级标签打印机，支持连续打印，适用于物流和仓储行业。",
-                speed: "fast",
-                width: "standard",
                 ink: "solid",
+                width: "standard",
+                feature: "industrial",
                 price: "¥ 18,500",
-                image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                hasPdf: true,
+                hasSupplies: true
             }
         ];
 
         // 当前筛选条件
         let currentFilters = {
-            speed: "all",
+            ink: "all",
             width: "all",
-            ink: "all"
+            feature: "all"
         };
 
         // 初始化页面
@@ -785,26 +829,35 @@
             
             // 渲染每个打印机
             printersToRender.forEach(printer => {
-                // 获取速度文本
-                let speedText = "";
-                if (printer.speed === "fast") speedText = "高速 (≥50页/分钟)";
-                else if (printer.speed === "normal") speedText = "标准 (20-49页/分钟)";
-                else speedText = "低速 (<20页/分钟)";
-                
-                // 获取宽幅文本
-                let widthText = printer.width === "wide" ? "宽幅 (≥A3)" : "标准 (A4/A5)";
-                
-                // 获取墨水文本
+                // 获取墨水类型文本
                 let inkText = "";
                 if (printer.ink === "laser") inkText = "激光打印机";
                 else if (printer.ink === "inkjet") inkText = "喷墨打印机";
                 else inkText = "固态墨水";
                 
+                // 获取宽幅文本
+                let widthText = printer.width === "wide" ? "宽幅 (≥A3)" : "标准 (A4/A5)";
+                
+                // 获取功能文本
+                let featureText = "";
+                if (printer.feature === "office") featureText = "办公打印";
+                else if (printer.feature === "photo") featureText = "照片打印";
+                else featureText = "工业打印";
+                
                 const printerCard = document.createElement('div');
                 printerCard.className = 'product-card';
-                printerCard.setAttribute('data-speed', printer.speed);
-                printerCard.setAttribute('data-width', printer.width);
                 printerCard.setAttribute('data-ink', printer.ink);
+                printerCard.setAttribute('data-width', printer.width);
+                printerCard.setAttribute('data-feature', printer.feature);
+                
+                // 根据是否有PDF文件决定按钮样式
+                const learnMoreClass = printer.hasPdf ? 'btn-learn' : 'btn-learn disabled';
+                const learnMoreText = printer.hasPdf ? '<i class="fas fa-download"></i> Learn More' : '<i class="fas fa-file-pdf"></i> PDF文档准备中';
+                const pdfLink = printer.hasPdf ? `downloads/printer-${printer.id}.pdf` : '#';
+                
+                // 根据是否有耗材推荐决定标签样式
+                const supplyTagClass = printer.hasSupplies ? 'supply-tag' : 'supply-tag disabled';
+                const supplyTagText = printer.hasSupplies ? '耗材推荐' : '暂无耗材';
                 
                 printerCard.innerHTML = `
                     <div class="product-image">
@@ -812,30 +865,29 @@
                     </div>
                     <div class="product-header">
                         <h3 class="product-title">${printer.name}</h3>
-                        <div class="product-model">${printer.model}</div>
+                        <div class="product-model">${printer.model} <span class="${supplyTagClass}">${supplyTagText}</span></div>
                     </div>
                     <div class="product-body">
                         <p class="product-desc">${printer.description}</p>
                         
                         <div class="product-specs">
                             <div class="spec-item">
-                                <span class="spec-label">打印速度:</span>
-                                <span class="spec-value">${speedText}</span>
+                                <span class="spec-label">墨水类型:</span>
+                                <span class="spec-value">${inkText}</span>
                             </div>
                             <div class="spec-item">
                                 <span class="spec-label">打印宽幅:</span>
                                 <span class="spec-value">${widthText}</span>
                             </div>
                             <div class="spec-item">
-                                <span class="spec-label">墨水类型:</span>
-                                <span class="spec-value">${inkText}</span>
+                                <span class="spec-label">主要功能:</span>
+                                <span class="spec-value">${featureText}</span>
                             </div>
                         </div>
                     </div>
                     <div class="product-footer">
-                        <div class="product-price">${printer.price}</div>
-                        <a href="downloads/printer-${printer.id}.pdf" class="btn-learn" download>
-                            <i class="fas fa-download"></i> Learn More
+                        <a href="${pdfLink}" class="${learnMoreClass}" download>
+                            ${learnMoreText}
                         </a>
                     </div>
                 `;
@@ -846,34 +898,39 @@
             // 为下载按钮添加事件监听
             document.querySelectorAll('.btn-learn').forEach(btn => {
                 btn.addEventListener('click', function(e) {
-                    const printerName = this.closest('.product-card').querySelector('.product-title').textContent;
-                    alert(`开始下载: ${printerName} 的详细产品文档\n\n注意：这是一个示例，实际网站中这里会链接到真实的PDF文件。\n\n请将您的PDF文件放入网站的downloads文件夹，并更新链接地址。`);
-                    
-                    // 阻止默认行为（因为演示中没有真实PDF文件）
-                    e.preventDefault();
-                    
-                    // 添加下载动画效果
-                    const icon = this.querySelector('i');
-                    icon.className = 'fas fa-spinner fa-spin';
-                    
-                    setTimeout(() => {
-                        icon.className = 'fas fa-check';
+                    if (this.classList.contains('disabled')) {
+                        e.preventDefault();
+                        alert("此产品的PDF文档正在准备中，敬请期待。");
+                    } else {
+                        const printerName = this.closest('.product-card').querySelector('.product-title').textContent;
+                        alert(`开始下载: ${printerName} 的详细产品文档\n\n注意：这是一个示例，实际网站中这里会链接到真实的PDF文件。\n\n请将您的PDF文件放入网站的downloads文件夹，并更新链接地址。`);
+                        
+                        // 阻止默认行为（因为演示中没有真实PDF文件）
+                        e.preventDefault();
+                        
+                        // 添加下载动画效果
+                        const icon = this.querySelector('i');
+                        icon.className = 'fas fa-spinner fa-spin';
+                        
                         setTimeout(() => {
-                            icon.className = 'fas fa-download';
-                        }, 1500);
-                    }, 1000);
+                            icon.className = 'fas fa-check';
+                            setTimeout(() => {
+                                icon.className = 'fas fa-download';
+                            }, 1500);
+                        }, 1000);
+                    }
                 });
             });
         }
 
         // 设置筛选监听器
         function setupFilterListeners() {
-            // 打印速度筛选
-            document.querySelectorAll('#speedFilter .filter-option').forEach(option => {
+            // 墨水类型筛选
+            document.querySelectorAll('#inkFilter .filter-option').forEach(option => {
                 option.addEventListener('click', () => {
-                    document.querySelectorAll('#speedFilter .filter-option').forEach(opt => opt.classList.remove('active'));
+                    document.querySelectorAll('#inkFilter .filter-option').forEach(opt => opt.classList.remove('active'));
                     option.classList.add('active');
-                    currentFilters.speed = option.getAttribute('data-value');
+                    currentFilters.ink = option.getAttribute('data-value');
                 });
             });
             
@@ -886,12 +943,12 @@
                 });
             });
             
-            // 墨水类型筛选
-            document.querySelectorAll('#inkFilter .filter-option').forEach(option => {
+            // 功能筛选
+            document.querySelectorAll('#featureFilter .filter-option').forEach(option => {
                 option.addEventListener('click', () => {
-                    document.querySelectorAll('#inkFilter .filter-option').forEach(opt => opt.classList.remove('active'));
+                    document.querySelectorAll('#featureFilter .filter-option').forEach(opt => opt.classList.remove('active'));
                     option.classList.add('active');
-                    currentFilters.ink = option.getAttribute('data-value');
+                    currentFilters.feature = option.getAttribute('data-value');
                 });
             });
             
@@ -910,8 +967,8 @@
         // 应用筛选
         function applyFilters() {
             const filteredPrinters = printers.filter(printer => {
-                // 检查打印速度
-                if (currentFilters.speed !== 'all' && printer.speed !== currentFilters.speed) {
+                // 检查墨水类型
+                if (currentFilters.ink !== 'all' && printer.ink !== currentFilters.ink) {
                     return false;
                 }
                 
@@ -920,38 +977,9 @@
                     return false;
                 }
                 
-                // 检查墨水类型
-                if (currentFilters.ink !== 'all' && printer.ink !== currentFilters.ink) {
+                // 检查功能
+                if (currentFilters.feature !== 'all' && printer.feature !== currentFilters.feature) {
                     return false;
                 }
                 
-                return true;
-            });
-            
-            renderPrinters(filteredPrinters);
-        }
-
-        // 清除筛选
-        function clearFilters() {
-            // 重置筛选条件
-            currentFilters = {
-                speed: "all",
-                width: "all",
-                ink: "all"
-            };
-            
-            // 重置筛选UI
-            document.querySelectorAll('.filter-option').forEach(option => {
-                option.classList.remove('active');
-            });
-            
-            document.querySelectorAll('.filter-option[data-value="all"]').forEach(option => {
-                option.classList.add('active');
-            });
-            
-            // 重新渲染所有打印机
-            renderPrinters(printers);
-        }
-    </script>
-</body>
-</html>
+                return true
