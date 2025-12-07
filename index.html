@@ -437,12 +437,6 @@
             align-items: center;
         }
         
-        .product-price {
-            font-weight: 700;
-            color: var(--primary);
-            font-size: 1.2rem;
-        }
-        
         .product-actions {
             display: flex;
             gap: 1rem;
@@ -464,6 +458,16 @@
             transform: translateY(-2px);
         }
         
+        .btn-view.disabled {
+            background-color: var(--gray);
+            cursor: not-allowed;
+        }
+        
+        .btn-view.disabled:hover {
+            background-color: var(--gray);
+            transform: none;
+        }
+        
         .btn-download {
             background-color: transparent;
             color: var(--primary);
@@ -478,6 +482,35 @@
         
         .btn-download:hover {
             background-color: rgba(215, 26, 26, 0.1);
+        }
+        
+        .btn-download.disabled {
+            color: var(--gray);
+            border-color: var(--gray);
+            cursor: not-allowed;
+        }
+        
+        .btn-download.disabled:hover {
+            background-color: transparent;
+        }
+        
+        /* 耗材推荐标签 */
+        .supply-tag {
+            display: inline-block;
+            background-color: rgba(215, 26, 26, 0.1);
+            color: var(--primary);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 10px;
+            border: 1px solid rgba(215, 26, 26, 0.2);
+        }
+        
+        .supply-tag.disabled {
+            background-color: rgba(122, 122, 122, 0.1);
+            color: var(--gray);
+            border-color: var(--gray-light);
         }
         
         /* 页脚 */
@@ -746,8 +779,10 @@
             </div>
             
             <div class="categories-tabs" id="categoryTabs">
-                <div class="category-tab active" data-category="all">全部产品</div>
-                <div class="category-tab" data-category="printer">打印机</div>
+                <!-- 更新：去掉全部产品，添加耗材和其他 -->
+                <div class="category-tab active" data-category="printer">打印机</div>
+                <div class="category-tab" data-category="supply">耗材</div>
+                <div class="category-tab" data-category="other">其他</div>
             </div>
             
             <div class="products-grid" id="productsGrid">
@@ -756,6 +791,8 @@
                     <div class="product-header">
                         <span class="product-category">打印机</span>
                         <h3 class="product-title">工业高速喷墨打印机</h3>
+                        <!-- 耗材推荐标签 -->
+                        <span class="supply-tag">耗材推荐</span>
                     </div>
                     <div class="product-body">
                         <p class="product-desc">专业级高速工业喷墨打印机，适用于大批量生产环境，支持多种介质打印，速度高达150页/分钟。</p>
@@ -776,7 +813,6 @@
                         </div>
                     </div>
                     <div class="product-footer">
-                        <div class="product-price">¥ 45,800</div>
                         <div class="product-actions">
                             <a href="printers.html" class="btn-view">查看所有打印机</a>
                         </div>
@@ -788,6 +824,8 @@
                     <div class="product-header">
                         <span class="product-category">打印机</span>
                         <h3 class="product-title">彩色激光打印机</h3>
+                        <!-- 无耗材推荐标签 -->
+                        <span class="supply-tag disabled">暂无耗材</span>
                     </div>
                     <div class="product-body">
                         <p class="product-desc">企业级彩色激光打印机，适合中小型办公室使用，支持自动双面打印和网络连接。</p>
@@ -808,9 +846,9 @@
                         </div>
                     </div>
                     <div class="product-footer">
-                        <div class="product-price">¥ 8,500</div>
                         <div class="product-actions">
-                            <a href="printers.html" class="btn-view">查看详情</a>
+                            <!-- 无产品详情链接 -->
+                            <a href="#" class="btn-view disabled">查看详情</a>
                         </div>
                     </div>
                 </div>
@@ -820,6 +858,8 @@
                     <div class="product-header">
                         <span class="product-category">打印机</span>
                         <h3 class="product-title">照片打印机</h3>
+                        <!-- 耗材推荐标签 -->
+                        <span class="supply-tag">耗材推荐</span>
                     </div>
                     <div class="product-body">
                         <p class="product-desc">专业级照片打印机，支持6色墨水系统，提供卓越的色彩还原和细节表现。</p>
@@ -840,9 +880,41 @@
                         </div>
                     </div>
                     <div class="product-footer">
-                        <div class="product-price">¥ 12,300</div>
                         <div class="product-actions">
-                            <a href="printers.html" class="btn-view">查看详情</a>
+                            <!-- 有产品详情链接 -->
+                            <a href="#" class="btn-view">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 耗材示例（当前为空，不显示） -->
+                <div class="product-card" data-category="supply" style="display: none;">
+                    <div class="product-header">
+                        <span class="product-category">耗材</span>
+                        <h3 class="product-title">打印机墨盒</h3>
+                    </div>
+                    <div class="product-body">
+                        <p class="product-desc">高质量打印机墨盒，适用于多种打印机型号，提供持久的打印效果和鲜艳的色彩。</p>
+                    </div>
+                    <div class="product-footer">
+                        <div class="product-actions">
+                            <a href="#" class="btn-view">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 其他产品示例（当前为空，不显示） -->
+                <div class="product-card" data-category="other" style="display: none;">
+                    <div class="product-header">
+                        <span class="product-category">其他</span>
+                        <h3 class="product-title">打印服务</h3>
+                    </div>
+                    <div class="product-body">
+                        <p class="product-desc">专业的打印服务，包括文件处理、批量打印和后期装订等一站式解决方案。</p>
+                    </div>
+                    <div class="product-footer">
+                        <div class="product-actions">
+                            <a href="#" class="btn-view">查看详情</a>
                         </div>
                     </div>
                 </div>
@@ -941,8 +1013,18 @@
                 
                 // 筛选产品卡片
                 productCards.forEach(card => {
-                    if (category === 'all' || card.getAttribute('data-category') === category) {
+                    if (category === 'printer' && card.getAttribute('data-category') === category) {
                         card.style.display = 'flex';
+                    } else if (category === 'supply' || category === 'other') {
+                        // 耗材和其他分类暂时为空，不显示任何产品
+                        card.style.display = 'none';
+                    } else if (category === 'printer') {
+                        // 显示所有打印机
+                        if (card.getAttribute('data-category') === 'printer') {
+                            card.style.display = 'flex';
+                        } else {
+                            card.style.display = 'none';
+                        }
                     } else {
                         card.style.display = 'none';
                     }
@@ -996,6 +1078,13 @@
         document.addEventListener('DOMContentLoaded', () => {
             // 设置首页链接为active
             document.querySelector('nav a[href="#home"]').classList.add('active');
+        });
+        
+        // 为没有链接的按钮添加禁用状态
+        document.querySelectorAll('.btn-view.disabled, .btn-download.disabled').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+            });
         });
     </script>
 </body>
